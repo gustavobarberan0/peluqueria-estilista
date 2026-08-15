@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peluquería ERP - Sistema de Gestión</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <i class="fas fa-cut"></i>
+          <span>Peluquería ERP</span>
+        </div>
+      </div>
+      
+      <ul class="menu">
+        <li data-route="dashboard" class="active">
+          <i class="fas fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </li>
+        <li data-route="appointments">
+          <i class="fas fa-calendar-alt"></i>
+          <span>Citas</span>
+        </li>
+        <li data-route="clients">
+          <i class="fas fa-users"></i>
+          <span>Clientes</span>
+        </li>
+        <li data-route="stylists">
+          <i class="fas fa-user-tie"></i>
+          <span>Estilistas</span>
+        </li>
+        <li data-route="inventory">
+          <i class="fas fa-boxes"></i>
+          <span>Inventario</span>
+        </li>
+        <li data-route="reports">
+          <i class="fas fa-chart-bar"></i>
+          <span>Reportes</span>
+        </li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <div class="network-status">
+          <i class="fas fa-wifi"></i>
+          <span>Local</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main>
+      <header class="main-header">
+        <div class="header-left">
+          <h1 id="page-title">Dashboard</h1>
+        </div>
+        <div class="header-right">
+          <span id="current-date"></span>
+          <button id="btn-backup" class="btn-icon" title="Crear Backup">
+            <i class="fas fa-database"></i>
+          </button>
+          <button id="btn-logout" class="btn btn-outline">
+            <i class="fas fa-sign-out-alt"></i>
+            Salir
+          </button>
+        </div>
+      </header>
+
+      <div id="page-content" class="content-area">
+        <!-- El contenido se cargará dinámicamente -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal genérico -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Título</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div id="modal-body" class="modal-body">
+        <!-- Contenido del modal -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/services/ApiService.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
