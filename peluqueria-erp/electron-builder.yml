@@ -1,0 +1,23 @@
+appId: com.peluqueria.erp
+productName: PeluqueriaERP
+directories:
+  output: dist
+files:
+  - src/**/*
+  - frontend/**/*
+  - backend/**/*
+  - prisma/**/*
+  - node_modules/**/*
+win:
+  target: nsis
+  icon: resources/icons/win/icon.ico
+nsis:
+  oneClick: false
+  perMachine: true
+  allowToChangeInstallationDirectory: true
+mac:
+  target: dmg
+  icon: resources/icons/mac/icon.icns
+linux:
+  target: AppImage
+  icon: resources/icons/linux

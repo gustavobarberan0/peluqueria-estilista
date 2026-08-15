@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../data/peluqueria.db"
+}
+
+model Client {
+  id            String        @id @default(uuid())
+  name          String
+  phone         String        @unique
+  email         String?
+  loyaltyPoints Int           @default(0)
+  loyaltyTier   String        @default("bronce")
+  totalSpent    Decimal       @default(0)
+  appointments  Appointment[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Appointment {
+  id        String   @id @default(uuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id])
+  stylistId String
+  stylist   Stylist  @relation(fields: [stylistId], references: [id])
+  date      DateTime
+  time      String
+  duration  Int
+  status    String   @default("pending")
+  services  Json
+  total     Decimal?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Stylist {
+  id            String        @id @default(uuid())
+  name          String
+  specialities  String[]
+  commission    Decimal       @default(35)
+  appointments  Appointment[]
+  rating        Decimal       @default(0)
+  active        Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  name      String
+  sku       String   @unique
+  stock     Int      @default(0)
+  minStock  Int      @default(5)
+  costPrice Decimal
+  sellPrice Decimal
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  role      String   @default("cashier")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CashRegister {
+  id          String   @id @default(uuid())
+  userId      String
+  openTime    DateTime @default(now())
+  closeTime   DateTime?
+  initialCash Decimal  @default(0)
+  finalCash   Decimal?
+  status      String   @default("open")
+  createdAt   DateTime @default(now())
+}
